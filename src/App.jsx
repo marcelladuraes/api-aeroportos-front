@@ -13,7 +13,7 @@ import {
   useBreakpointValue,
   IconButton,
   Input,
-  Center, useToast
+  Center, useToast, Heading
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ModalComp from "./components/ModalComp";
@@ -146,9 +146,9 @@ const App = () => {
     if (serchText.length < 3) {
       toast(
         {
-          position: 'top-right',
-          title: 'Código IATA',
-          description: 'Favor colocar os 3 caracteres para busca',
+          position: 'top',
+          title: 'Código IATA inválido!',
+          description: 'Insira um código IATA de 3 dígitos ',
           status: 'error',
           duration: 4000,
           isClosable: true,
@@ -187,58 +187,78 @@ const App = () => {
       justify="center"
       fontSize="20px"
       fontFamily="poppins"
+      backgroundColor={"blue.50"}
     >
-      <Box w="100%" h="100vh" py={50} px={50}>
+      <Box w="100%" h="100vh" py={50} px={50}
+>
+
+<Heading
+fontSize={40}
+marginTop={-5}
+marginBottom={10}
+marginLeft={5}
+fontFamily={"monospace"}
+textColor={"green"}
+> Consulta de aeroportos </Heading> 
 
         <Box as='row'>
           <Center>
-            {isMobile ? <IconButton icon={<AddIcon />} colorScheme="blue" onClick={() => [setEditing(false), setDataEdit({}), onOpen()]}>
 
-            </IconButton> : <Button pl={10} pr={10} colorScheme="blue" onClick={() => [setEditing(false), setDataEdit({}), onOpen()]}>
-              NOVO CADASTRO
-            </Button>}
-
-            <Input ml={isMobile ? 5 : 20}
+          <Input ml={isMobile ? 5 : 20}
               isDisabled={serching}
               type="text"
+              marginLeft={5}
+              marginRight={1560}
               maxLength="3"
               value={serchText}
+              fontSize="18px"
+              placeholder = "Insira o código IATA"
+              borderColor={"black"}
+              backgroundColor={"white"}
               onChange={(e) => setSerchText(e.target.value.toUpperCase().replace(/[^a-zA-Z]+/, ''))}>
             </Input>
-            <IconButton ml={2} icon={serching ? <DeleteIcon /> : <SearchIcon />} colorScheme={serching ? "red" : "blue"} onClick={() => handleSearch()}>
-
-            </IconButton>
 
           </Center>
+        
+          <IconButton mt={-120} ml={240} icon={serching ? <DeleteIcon /> : <SearchIcon />} colorScheme={serching ? "green" : "green"} onClick={() => handleSearch()}>
+
+</IconButton>
+        
+          {isMobile ? <IconButton icon={<AddIcon />} colorScheme="green" onClick={() => [setEditing(false), setDataEdit({}), onOpen()]}>
+
+          </IconButton> : <Button pl={5} pr={5} mt={10} ml={-260} colorScheme="green" onClick={() => [setEditing(false), setDataEdit({}), onOpen()]}>
+          NOVO CADASTRO
+          </Button>}
+
         </Box>
 
         <Box overflowY="auto" height="100%">
           <Table mt="6">
             <Thead>
               <Tr>
-                <Th maxW={isMobile ? 5 : 100} fontSize="15px">
+                <Th maxW={isMobile ? 5 : 100} fontSize="18px">
                   ID
                 </Th>
-                <Th maxW={isMobile ? 5 : 100} fontSize="15px">
+                <Th maxW={isMobile ? 5 : 100} fontSize="18px">
                   Nome
                 </Th>
-                <Th maxW={isMobile ? 5 : 100} fontSize="15px">
+                <Th maxW={isMobile ? 5 : 100} fontSize="18px">
                   IATA
                 </Th>
-                <Th maxW={isMobile ? 5 : 200} fontSize="15px">
+                <Th maxW={isMobile ? 5 : 200} fontSize="18px">
                   Cidade
                 </Th>
-                <Th maxW={isMobile ? 5 : 1000} fontSize="15px">
-                  ISO
+                <Th maxW={isMobile ? 5 : 1000} fontSize="18px">
+                  Código PAÍS (ISO)
                 </Th>
-                <Th maxW={isMobile ? 5 : 200} fontSize="15px">
-                  Lat.
+                <Th maxW={isMobile ? 5 : 200} fontSize="18px">
+                  Latitude
                 </Th>
-                <Th maxW={isMobile ? 5 : 200} fontSize="15px">
-                  Long.
+                <Th maxW={isMobile ? 5 : 200} fontSize="18px">
+                  Longitude
                 </Th>
-                <Th maxW={isMobile ? 5 : 200} fontSize="15px">
-                  Alt.
+                <Th maxW={isMobile ? 5 : 200} fontSize="18px">
+                  Altitude
                 </Th>
                 <Th p={0}></Th>
                 <Th p={0}></Th>
