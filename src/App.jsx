@@ -249,7 +249,7 @@ textColor={"green"}
                   Cidade
                 </Th>
                 <Th maxW={isMobile ? 5 : 1000} fontSize="18px">
-                  Código PAÍS (ISO)
+                  Páis
                 </Th>
                 <Th maxW={isMobile ? 5 : 200} fontSize="18px">
                   Latitude
@@ -265,13 +265,13 @@ textColor={"green"}
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({ id_aeroporto, nome_aeroporto, codigo_iata, cidade, codigo_pais_iso, latitude, longitude, altitude }, index) => (
+              {data.map(({ id_aeroporto, nome_aeroporto, codigo_iata, cidade, pais, latitude, longitude, altitude }, index) => (
                 <Tr key={index} cursor="pointer " _hover={{ bg: "gray.100" }}>
                   <Td maxW={isMobile ? 5 : 100}>{id_aeroporto}</Td>
                   <Td maxW={isMobile ? 5 : 100}>{nome_aeroporto}</Td>
                   <Td maxW={isMobile ? 5 : 100}>{codigo_iata}</Td>
                   <Td maxW={isMobile ? 5 : 100}>{cidade}</Td>
-                  <Td maxW={isMobile ? 5 : 100}>{codigo_pais_iso}</Td>
+                  <Td maxW={isMobile ? 5 : 100}>{pais}</Td>
                   <Td maxW={isMobile ? 5 : 100}>{latitude}</Td>
                   <Td maxW={isMobile ? 5 : 100}>{longitude}</Td>
                   <Td maxW={isMobile ? 5 : 100}>{altitude}</Td>
@@ -280,7 +280,7 @@ textColor={"green"}
                       fontSize={20}
                       onClick={() => [
                         setEditing(true),
-                        setDataEdit({ id_aeroporto, nome_aeroporto, codigo_iata, cidade, codigo_pais_iso, latitude, longitude, altitude, index }),
+                        setDataEdit({ id_aeroporto, nome_aeroporto, codigo_iata, cidade, pais, latitude, longitude, altitude, index }),
                         onOpen(),
                       ]}
                     />

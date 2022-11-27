@@ -20,7 +20,7 @@ const ModalComp = ({ data, dataEdit, isOpen, onClose,editing,onCreate,onUpdate }
   const [nome_aeroporto, setNomeAeroporto] = useState(dataEdit.nome_aeroporto || "");
   const [codigo_iata, setCodigoIata] = useState(dataEdit.codigo_iata || "");
   const [cidade, setCidade] = useState(dataEdit.cidade || "");
-  const [codigo_pais_iso, setCodigoPaisIso] = useState(dataEdit.codigo_pais_iso || "");
+  const [pais, setCodigoPaisIso] = useState(dataEdit.pais || "");
   const [latitude, setLatitude] = useState(dataEdit.latitude || "");
   const [longitude, setLongitude] = useState(dataEdit.longitude || "");
   const [altitude, setAltitude] = useState(dataEdit.altitude || "");
@@ -32,7 +32,7 @@ const ModalComp = ({ data, dataEdit, isOpen, onClose,editing,onCreate,onUpdate }
    
 
   const handleSave = () => {
-    if (!nome_aeroporto || !codigo_iata || !cidade || !codigo_pais_iso || !latitude || !longitude || !altitude ){
+    if (!nome_aeroporto || !codigo_iata || !cidade || !pais || !latitude || !longitude || !altitude ){
       toast(
         {
         position: 'top',
@@ -45,10 +45,10 @@ const ModalComp = ({ data, dataEdit, isOpen, onClose,editing,onCreate,onUpdate }
     };
 
     if (editing) {
-      onUpdate({id_aeroporto, nome_aeroporto, codigo_iata ,cidade,codigo_pais_iso,latitude,longitude,altitude})
+      onUpdate({id_aeroporto, nome_aeroporto, codigo_iata ,cidade,pais,latitude,longitude,altitude})
     }else{
       let id = data.length+1;
-      onCreate({id_aeroporto:id, nome_aeroporto, codigo_iata ,cidade,codigo_pais_iso,latitude,longitude,altitude})
+      onCreate({id_aeroporto:id, nome_aeroporto, codigo_iata ,cidade,pais,latitude,longitude,altitude})
     }
   };
 
@@ -94,9 +94,9 @@ const ModalComp = ({ data, dataEdit, isOpen, onClose,editing,onCreate,onUpdate }
               <Box>
                 <Input
                   type="text"
-                  placeholder="Código do País (ISO)"
-                  maxLength="2"
-                  value={codigo_pais_iso}
+                  placeholder="País"
+                  maxLength="35"
+                  value={pais}
                   onChange={(e) => setCodigoPaisIso(e.target.value.toUpperCase().replace(/[^a-zA-Z]+/, ''))}
                 />
               </Box>
